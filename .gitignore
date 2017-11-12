@@ -1,4 +1,4 @@
 .idea
 node_modules
-semantic
-semantic.json
+/semantic/
+/semantic.json
