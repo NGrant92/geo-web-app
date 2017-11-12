@@ -154,7 +154,41 @@ exports.deleteAllCaches = {
   }
 };
 
+exports.deleteAllMessages = {
+  handler: function(request, reply) {
+    let userEmail = request.auth.credentials.loggedInUser;
+
+    User.findOne({ email: userEmail })
+      .then(user => {
+        Cache.remove({ user: user.id }).then(result => {
+          reply.redirect("/home");
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        reply.redirect("/");
+      });
+  }
+};
+
 exports.deleteCacheSet = {
+  handler: function(request, reply) {
+    let cacheSet = Object.keys(request.payload);
+
+    for (let i = 0; i < cacheSet.length; i++) {
+      Cache.remove({ _id: cacheSet[i] })
+        .then(result => {
+          console.log("Cache Removed: " + cacheSet[i]);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+    reply.redirect("/home");
+  }
+};
+
+exports.deleteMessageSet = {
   handler: function(request, reply) {
     let cacheSet = Object.keys(request.payload);
 

@@ -20,9 +20,8 @@ module.exports = [
   { method: "GET", path: "/viewuser/{email}", config: User.viewUser },
   { method: "POST", path: "/home/addcache", config: User.addCache },
   { method: "POST", path: "/home/addmessage", config: User.addMessage },
-
-  { method: "GET", path: "/tweets/deleteall", config: User.deleteAllCaches },
-  { method: "POST", path: "/tweets/deletetweetset", config: User.deleteCacheSet },
+  { method: "GET", path: "/caches/deleteall", config: User.deleteAllCaches },
+  { method: "POST", path: "/caches/deletecacheset", config: User.deleteCacheSet },
 
 
   { method: "GET", path: "/home", config: Accounts.isAdmin },
