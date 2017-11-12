@@ -32,11 +32,11 @@ exports.home = {
         return Message.find({}).populate("user");
       })
       .then(messages => {
-        allMessages = messages;
+        allMessages = messages.reverse();
         return Message.find({user: loggedUser}).populate("user");
       })
       .then(userMessageList => {
-        userMessages = userMessageList;
+        userMessages = userMessageList.reverse();
       })
       .then(result => {
         reply.view("home", {
