@@ -25,7 +25,7 @@ exports.home = {
       })
       .then(caches => {
         allCaches = caches.reverse();
-        return User.find({admin : false});
+        return User.find({ admin: false });
       })
       .then(users => {
         allUsers = users;
@@ -33,7 +33,7 @@ exports.home = {
       })
       .then(messages => {
         allMessages = messages.reverse();
-        return Message.find({user: loggedUser}).populate("user");
+        return Message.find({ user: loggedUser }).populate("user");
       })
       .then(userMessageList => {
         userMessages = userMessageList.reverse();
@@ -60,32 +60,34 @@ exports.viewUser = {
   handler: function(request, reply) {
     let paramEmail = request.params.email;
     let loggedInUser = request.auth.credentials.loggedInUser;
-
+    let cacheList;
+    let userFound;
+    let userlist;
     let isAdmin;
-    User.findOne({ email: loggedInUser }).then(user => {
-      isAdmin = user.admin;
-    });
 
     if (paramEmail !== loggedInUser) {
       User.findOne({ email: paramEmail })
         .then(foundUser => {
-          return Cache.find({ user: foundUser })
-            .populate("user")
-            .then(userCaches => {
-              return [userCaches.reverse(), foundUser];
-            })
-            .then(results => {
-              return User.find({ admin: false }).then(userlist => {
-                return [results[0], results[1], userlist];
-              });
-            });
+          userFound = foundUser;
+          return User.find({ admin: false });
+        })
+        .then(users => {
+          userlist = users;
+          return Cache.find({ user: userFound }).populate("user");
+        })
+        .then(userCaches => {
+          cacheList = userCaches.reverse();
+          return User.findOne({ email: loggedInUser });
+        })
+        .then(loggedUser => {
+          isAdmin = loggedUser.admin;
         })
         .then(result => {
           reply.view("viewuser", {
-            title: result[1].firstName + "'s Profile",
-            allCaches: result[0],
-            user: result[1],
-            userlist: result[2],
+            title: userFound.firstName + "'s Profile",
+            allCaches: cacheList,
+            user: userFound,
+            userlist: userlist,
             admin: isAdmin
           });
         })
