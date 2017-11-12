@@ -20,7 +20,14 @@
           {{> allcaches}}
         {{/if}}
       </div>
-      <div class="ui tab" data-tab="postsecond" style="padding: 10px;">{{> allmessages}}</div>
+
+      <div class="ui tab" data-tab="postsecond" style="padding: 10px;">
+        {{#if admin}}
+          {{> usermessagesadmin}}
+        {{else}}
+          {{> allmessages}}
+        {{/if}}
+      </div>
     </section>
   </div>
 
