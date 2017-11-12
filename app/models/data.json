@@ -78,7 +78,7 @@
       "user": "->users.marge"
     },
     "three": {
-      "message": "Woohoo! found a cache when with maggie in the park!",
+      "message": "Woohoo! found a cache with maggie in the park!",
       "user": "->users.homer"
     },
     "four": {

@@ -15,11 +15,11 @@ exports.home = {
     User.findOne({ email: request.auth.credentials.loggedInUser })
       .then(foundUser => {
         loggedUser = foundUser;
-        return User.find({});
+        return User.find({admin: false});
       })
       .then(users => {
         allUsers = users;
-        return Cache.find({admin: false}).populate("user");
+        return Cache.find({}).populate("user");
       })
       .then(caches => {
         allCaches = caches.reverse();
