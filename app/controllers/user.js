@@ -118,6 +118,25 @@ exports.addCache = {
   }
 };
 
+exports.addMessage = {
+  handler: function(request, reply) {
+    let userEmail = request.auth.credentials.loggedInUser;
+    const message = new Message(request.payload);
+
+    User.findOne({ email: userEmail })
+      .then(user => {
+        message.user = user._id;
+        return message.save();
+      })
+      .then(newMessage => {
+        reply.redirect("/home");
+      })
+      .catch(err => {
+        reply.redirect("/");
+      });
+  }
+};
+
 exports.deleteAllCaches = {
   handler: function(request, reply) {
     let userEmail = request.auth.credentials.loggedInUser;
