@@ -7,10 +7,10 @@ exports.find = {
   auth: false,
 
   handler: function(request, reply) {
-    User.find({})
+    Message.find({})
       .exec()
-      .then(users => {
-        reply(users);
+      .then(messages => {
+        reply(messages);
       })
       .catch(err => {
         reply(Boom.badImplementation("error accessing db"));
@@ -22,9 +22,9 @@ exports.findOne = {
   auth: false,
 
   handler: function(request, reply) {
-    User.findOne({ _id: request.params.id })
-      .then(user => {
-        reply(user);
+    Message.findOne({ _id: request.params.id })
+      .then(message => {
+        reply(message);
       })
       .catch(err => {
         reply(Boom.notFound("id not found"));
@@ -36,14 +36,14 @@ exports.create = {
   auth: false,
 
   handler: function(request, reply) {
-    const user = new User(request.payload);
-    user
+    const message = new Message(request.payload);
+    message
       .save()
-      .then(newUser => {
-        reply(newUser).code(201);
+      .then(newMessage => {
+        reply(newMessage).code(201);
       })
       .catch(err => {
-        reply(Boom.badImplementation("error creating user"));
+        reply(Boom.badImplementation("error creating message"));
       });
   }
 };
@@ -52,12 +52,12 @@ exports.deleteAll = {
   auth: false,
 
   handler: function(request, reply) {
-    User.remove({})
+    Message.remove({})
       .then(err => {
         reply().code(204);
       })
       .catch(err => {
-        reply(Boom.badImplementation("error removing users"));
+        reply(Boom.badImplementation("error removing messages"));
       });
   }
 };
@@ -66,9 +66,9 @@ exports.deleteOne = {
   auth: false,
 
   handler: function(request, reply) {
-    User.remove({ _id: request.params.id })
-      .then(user => {
-        reply(user).code(204);
+    Message.remove({ _id: request.params.id })
+      .then(message => {
+        reply(message).code(204);
       })
       .catch(err => {
         reply(Boom.notFound("id not found"));
