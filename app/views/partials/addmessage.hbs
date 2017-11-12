@@ -1,0 +1,12 @@
+<div class="ui form eight wide column">
+    <form action="/home/addcache" method="POST">
+      <div class="grouped inline fields">
+        <h3 class="ui dividing header">Post Message</h3>
+        <div class="ui field">
+          <textarea name="message" rows="3" maxlength="140" placeholder="Description here..." required></textarea>
+        </div>
+      </div>
+      <button class="ui blue submit button"><i class="edit icon"></i>Post</button>
+    </form>
+    {{> formerror}}
+</div>

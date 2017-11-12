@@ -1,0 +1,93 @@
+{
+  "users": {
+    "_model": "User",
+    "homer": {
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "password": "secret",
+      "img": "http://res.cloudinary.com/ngrant/image/upload/v1506255274/LhFydmk_ueraaq.png",
+      "admin": false
+    },
+    "marge": {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret",
+      "img": "http://res.cloudinary.com/ngrant/image/upload/v1509621811/marge_efpuft.jpg",
+      "admin": false
+    },
+    "bart": {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret",
+      "img": "http://res.cloudinary.com/ngrant/image/upload/v1503767824/gteyxykqycd8zu2jwtiy.png",
+      "admin": false
+    },
+    "ned": {
+      "firstName": "Ned",
+      "lastName": "Flanders",
+      "email": "admin@simpson.com",
+      "password": "secret",
+      "img": "https://res.cloudinary.com/ngrant/image/upload/v1509798959/ned.jpg",
+      "admin": true
+    }
+  },
+  "caches": {
+    "_model": "Cache",
+    "one": {
+      "name": "Skatepark Cache",
+      "location": "Springfield Skatepark",
+      "description": "under the busted half pipe",
+      "user": "->users.bart"
+    },
+    "two": {
+      "name": "A cache for moms",
+      "location": "Springfield jungle gym",
+      "description": "Under the baby's slide. Just don't keep your kid waiting at the top as you look for it",
+      "user": "->users.marge"
+    },
+    "three": {
+      "name": "The ole watering hole",
+      "location": "Moe's bar",
+      "description": "Under Barney",
+      "user": "->users.homer"
+    },
+    "four": {
+      "name": "Home run",
+      "location": "Baseball Stadium",
+      "description": "First base!",
+      "user": "->users.homer"
+    },
+    "five": {
+      "name": "Our founder",
+      "location": "Jebediah Springfield Statue",
+      "description": "Under his footw",
+      "user": "->users.homer"
+    }
+  },
+  "messages": {
+    "_model": "Message",
+    "one": {
+      "message": "Sweet! found one under the jebediah statue!",
+      "user": "->users.bart"
+    },
+    "two": {
+      "message": "Oh! a cache in the baseball park",
+      "user": "->users.marge"
+    },
+    "three": {
+      "message": "Woohoo! found a cache when with maggie in the park!",
+      "user": "->users.homer"
+    },
+    "four": {
+      "message": "Bart showed me his one by the skatepark, neat!",
+      "user": "->users.homer"
+    },
+    "five": {
+      "message": "Thought I found a brand new cache on Jebediah's statue. Forgot it was mine... D'OH >.<",
+      "user": "->users.homer"
+    }
+  }
+}

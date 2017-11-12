@@ -1,0 +1,19 @@
+
+<div class="ui fluid form">
+  <form action="" method="POST">
+    <div class="field">
+      <label>Name</label>
+      <input name="cacheName" value="Under the Tree" type="text" required>
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <textarea name="cacheMessage" rows="2" maxlength="140" placeholder="Description here..." required>Test Description</textarea>
+    </div>
+    <div class="field">
+      <label>Location</label>
+      <input name="cacheLocation" value="At Spar" type="text" required>
+    </div>
+    <button class="ui blue submit button"><i class="edit icon"></i>Post</button>
+  </form>
+  {{> formerror }}
+</div>

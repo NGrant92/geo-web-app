@@ -1,0 +1,47 @@
+{{> mainmenu _id="home" }}
+
+<div class="ui equal width padded grid">
+  <div class = "four wide column">
+    {{> profilecard}}
+  </div>
+
+  <div class = "eight wide align right column">
+    <section class="ui segment" id="timelineTabs" style=overflow:auto;max-height:1200px;min-height:200px;">
+    <h3 class="ui dividing header">Post New Stuff!</h3>
+    <div class="ui pointing secondary demo menu">
+      <a class="active item" data-tab="postfirst"><i class="plus icon"></i>Cache</a>
+      <a class="item" data-tab="postsecond"><i class="plus icon"></i>Message</a>
+    </div>
+
+    <div class="ui active tab" data-tab="postfirst" style="padding: 10px;">{{> addcache }}</div>
+    <div class="ui tab" data-tab="postsecond" style="padding: 10px;">{{> addmessage}}</div>
+  </section>
+
+    <section class="ui segment" id="timelineTabs" style=overflow:auto;max-height:1200px;min-height:200px;">
+      <h3 class="ui dividing header">Timeline</h3>
+      <div class="ui pointing secondary demo menu">
+        <a class="active item" data-tab="first"><i class="users icon"></i>Messages</a>
+        <a class="item" data-tab="second"><i class="user icon"></i>My Messages</a>
+        <a class="item" data-tab="third"><i class="marker icon"></i>All Caches</a>
+        <a class="item" data-tab="fourth"><i class="marker icon"></i>My Caches</a>
+      </div>
+
+      <div class="ui active tab" data-tab="first" style="padding: 10px;">{{> allmessages}}</div>
+      <div class="ui tab" data-tab="second" style="padding: 10px;">{{> usermessages}}</div>
+      <div class="ui tab" data-tab="third" style="padding: 10px;">{{> allcaches}}</div>
+      <div class="ui tab" data-tab="fourth" style="padding: 10px;">{{> usercaches}}</div>
+    </section>
+  </div>
+
+  <div class = "four wide align right column padded">
+    <section class="ui raised segment">
+      {{> userlist }}
+    </section>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.menu .item').tab({history:false});
+  });
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <meta charset="UTF-8">
+    <!--<link rel="stylesheet" type="text/css" href="/semantic/out/semantic.min.css">-->
+    <!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="/semantic/out/semantic.min.js"></script>-->
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.js"></script>
+    <link rel="stylesheet" media="screen" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
+
+    <link rel="stylesheet" media="screen" href="/app/public/main.css">
+    <link rel="shortcut icon" type="image/png" href="http://res.cloudinary.com/ngrant/image/upload/c_scale,h_16/v1510223375/location_pdzwdp.png">
+  </head>
+  <body>
+    <section class="ui container">
+      {{{content}}}
+    </section>
+    <script>
+      $(document).ready(function () {
+        $('.ui.dropdown').dropdown({ on: 'hover' });
+      });
+    </script>
+  </body>
+</html>
