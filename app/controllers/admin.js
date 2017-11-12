@@ -1,37 +1,40 @@
 "use strict";
 const Cache = require("../models/cache");
 const User = require("../models/user");
+const Message = require("../models/message");
 const Logger = require("../utils/logger");
 const Joi = require("joi");
 
 exports.home = {
   handler: function(request, reply) {
+    let loggedUser;
+    let allCaches;
+    let allUsers;
+    let allMessages;
+
     User.findOne({ email: request.auth.credentials.loggedInUser })
       .then(foundUser => {
-        return Cache.find({})
-          .populate("user")
-          .then(caches => {
-            return [caches.reverse(), foundUser];
-          })
-          .then(result => {
-            return Cache.find({ user: result[1] })
-              .populate("user")
-              .then(myCaches => {
-                return [result[0], result[1], myCaches.reverse()];
-              });
-          })
-          .then(result => {
-            return User.find({ admin: false }).then(userlist => {
-              return [result[0], result[1], result[2], userlist];
-            });
-          });
+        loggedUser = foundUser;
+        return User.find({});
+      })
+      .then(users => {
+        allUsers = users;
+        return Cache.find({admin: false}).populate("user");
+      })
+      .then(caches => {
+        allCaches = caches.reverse();
+        return Message.find({}).populate("user");
+      })
+      .then(messages => {
+        allMessages = messages.reverse();
       })
       .then(result => {
         reply.view("homeadmin", {
           title: "Admin Home",
-          allCaches: result[0],
-          user: result[1],
-          userlist: result[3]
+          allCaches: allCaches,
+          user: loggedUser,
+          userlist: allUsers,
+          allMessages: allMessages
         });
       })
       .catch(err => {
@@ -52,7 +55,7 @@ exports.remUser = {
         });
       })
       .then(result => {
-        User.findOneAndRemove({email: userEmail}).then(result => {
+        User.findOneAndRemove({ email: userEmail }).then(result => {
           console.log("Removed user");
         });
       })
