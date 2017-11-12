@@ -7,12 +7,20 @@
 
   <div class = "eight wide align right column">
     <section class="ui segment" id="timelineTabs" style=overflow:auto;max-height:1200px;min-height:200px;">
-      <h3 class="ui dividing header">Caches</h3>
-      {{#if admin}}
-        {{> usercachesadmin}}
-      {{else}}
-        {{> allcaches}}
-      {{/if}}
+      <h3 class="ui dividing header">User Activity</h3>
+      <div class="ui pointing secondary demo menu">
+        <a class="active item" data-tab="postfirst"><i class="marker icon"></i>Caches</a>
+        <a class="item" data-tab="postsecond"><i class="comments icon"></i>Messages</a>
+      </div>
+
+      <div class="ui active tab" data-tab="postfirst" style="padding: 10px;">
+        {{#if admin}}
+          {{> usercachesadmin}}
+        {{else}}
+          {{> allcaches}}
+        {{/if}}
+      </div>
+      <div class="ui tab" data-tab="postsecond" style="padding: 10px;">{{> allmessages}}</div>
     </section>
   </div>
 
