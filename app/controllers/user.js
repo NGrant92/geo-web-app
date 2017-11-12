@@ -61,6 +61,7 @@ exports.viewUser = {
     let paramEmail = request.params.email;
     let loggedInUser = request.auth.credentials.loggedInUser;
     let cacheList;
+    let messageList;
     let userFound;
     let userlist;
     let isAdmin;
@@ -73,6 +74,10 @@ exports.viewUser = {
         })
         .then(users => {
           userlist = users;
+          return Message.find({ user: userFound }).populate("user");
+        })
+        .then(messages => {
+          messageList = messages.reverse();
           return Cache.find({ user: userFound }).populate("user");
         })
         .then(userCaches => {
@@ -85,8 +90,9 @@ exports.viewUser = {
         .then(result => {
           reply.view("viewuser", {
             title: userFound.firstName + "'s Profile",
-            allCaches: cacheList,
             user: userFound,
+            allCaches: cacheList,
+            allMessages: messageList,
             userlist: userlist,
             admin: isAdmin
           });
