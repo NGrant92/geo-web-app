@@ -19,6 +19,8 @@ module.exports = [
   { method: "GET", path: "/home/user", config: User.home },
   { method: "GET", path: "/viewuser/{email}", config: User.viewUser },
   { method: "POST", path: "/home/addcache", config: User.addCache },
+  { method: "POST", path: "/home/addmessage", config: User.addMessage },
+
   { method: "GET", path: "/tweets/deleteall", config: User.deleteAllCaches },
   { method: "POST", path: "/tweets/deletetweetset", config: User.deleteCacheSet },
 
