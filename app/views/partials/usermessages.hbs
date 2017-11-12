@@ -1,4 +1,4 @@
-<form action="/tweets/deletetweetset" method="POST">
+<form action="/messages/deleteset" method="POST">
   {{#each userMessages}}
     <div class="ui segment">
       <table class="ui padded very basic celled table">
@@ -22,4 +22,4 @@
   {{/each}}
   <button class="ui mini red icon button" style="float: right;"><i class="trash icon"></i> Delete Selected</button>
 </form>
-<a class="ui mini red icon button" href="/tweets/deleteall" style="float: right;"><i class="trash icon"></i> Delete All</a>
+<a class="ui mini red icon button" href="/messages/deleteall" style="float: right;"><i class="trash icon"></i> Delete All</a>

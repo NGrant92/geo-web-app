@@ -160,7 +160,7 @@ exports.deleteAllMessages = {
 
     User.findOne({ email: userEmail })
       .then(user => {
-        Cache.remove({ user: user.id }).then(result => {
+        Message.remove({ user: user.id }).then(result => {
           reply.redirect("/home");
         });
       })
@@ -190,12 +190,12 @@ exports.deleteCacheSet = {
 
 exports.deleteMessageSet = {
   handler: function(request, reply) {
-    let cacheSet = Object.keys(request.payload);
+    let messageSet = Object.keys(request.payload);
 
-    for (let i = 0; i < cacheSet.length; i++) {
-      Cache.remove({ _id: cacheSet[i] })
+    for (let i = 0; i < messageSet.length; i++) {
+      Message.remove({ _id: messageSet[i] })
         .then(result => {
-          console.log("Cache Removed: " + cacheSet[i]);
+          console.log("Message Removed: " + messageSet[i]);
         })
         .catch(err => {
           console.log(err);
