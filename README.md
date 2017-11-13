@@ -5,7 +5,7 @@
 
 **Name:** Niall Grant ([github.com/NGrant92](https://github.com/NGrant92))
 
-**Github repo:** https://github.com/NGrant92/geo-android-app
+**Github repo:** https://github.com/NGrant92/geo-web-app
 
 #### Description:
 
