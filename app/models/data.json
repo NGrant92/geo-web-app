@@ -39,30 +39,40 @@
     "one": {
       "name": "Skatepark Cache",
       "location": "Springfield Skatepark",
+      "latitude": 52.2462,
+      "longitude": 7.1202,
       "description": "under the busted half pipe",
       "user": "->users.bart"
     },
     "two": {
       "name": "A cache for moms",
       "location": "Springfield jungle gym",
+      "latitude": 52.2462,
+      "longitude": 2.1202,
       "description": "Under the baby's slide. Just don't keep your kid waiting at the top as you look for it",
       "user": "->users.marge"
     },
     "three": {
       "name": "The ole watering hole",
       "location": "Moe's bar",
+      "latitude": 52.2462,
+      "longitude": 0.1202,
       "description": "Under Barney",
       "user": "->users.homer"
     },
     "four": {
       "name": "Home run",
       "location": "Baseball Stadium",
+      "latitude": 52.2462,
+      "longitude": 10.1202,
       "description": "First base!",
       "user": "->users.homer"
     },
     "five": {
       "name": "Our founder",
       "location": "Jebediah Springfield Statue",
+      "latitude": 52.2462,
+      "longitude": 15.1202,
       "description": "Under his footw",
       "user": "->users.homer"
     }

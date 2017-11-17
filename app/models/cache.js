@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const cacheSchema = mongoose.Schema({
   name: String,
   location: String,
+  latitude: Number,
+  longitude: Number,
   description: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,

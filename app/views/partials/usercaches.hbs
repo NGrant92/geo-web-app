@@ -9,11 +9,14 @@
                 <div class="content">
                   <div class="header">{{name}}</div>
                   <div class="meta">
-                    <span class="price"><i class="grey marker icon"></i>{{location}}</span>
-                    <span class="stay"><i class="grey user icon"></i>{{user.firstName}} {{user.lastName}}</span>
+                    <span class="location"><i class="grey marker icon"></i>{{location}}</span>
+                    <span class="owner"><i class="grey user icon"></i>{{user.firstName}} {{user.lastName}}</span>
                   </div>
                   <div class="description">
                     <p style="word-break:break-all;white-space:normal;">{{description}}</p>
+                  </div>
+                  <div class="meta">
+                    <span class="coords">{{latitude}}, {{longitude}}</span>
                   </div>
                 </div>
               </div>
