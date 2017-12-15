@@ -3,7 +3,7 @@
     <img src="{{user.img}}">
   </div>
   <div class="content">
-    <a class="header">{{user.firstName}} {{user.lastName}}</a>
+    <a class="header">{{{user.firstName}}} {{{user.lastName}}}</a>
     <div class="meta">
       <span class="date">Joined in 2017</span>
     </div>
@@ -18,7 +18,13 @@
         <td class="collapsing">
           Email
         </td>
-        <td>{{user.email}}</td>
+        <td>{{{user.email}}}</td>
+      </tr>
+      <tr>
+        <td class="collapsing">
+          DOB
+        </td>
+        <td>{{{user.dob}}}</td>
       </tr>
       </tbody>
     </table>

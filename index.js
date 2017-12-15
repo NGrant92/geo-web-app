@@ -6,12 +6,22 @@ const Hapi = require('hapi');
 //creating new hapi server
 let server = new Hapi.Server();
 
+const fs = require('fs');
+let options = {
+  port: 4000,
+  tls: {
+    key: fs.readFileSync('./app/private/ca-webserver.key'),
+    cert: fs.readFileSync('./app/private/ca-webserver.crt')
+  }
+};
+
 //setting the server connection to localhost:4000
-server.connection({ port: process.env.PORT || 4000 });
+//server.connection(options); //uses https
+server.connection({ port: process.env.PORT || 4000 }); //uses http
 
 require('./app/models/db');
 
-server.register([require('inert'), require('vision'), require('hapi-auth-cookie')], err => {
+server.register([require('inert'), require('vision'), require('hapi-auth-cookie'), require('bell')], err => {
 
   if (err) {
     throw err;
@@ -31,7 +41,7 @@ server.register([require('inert'), require('vision'), require('hapi-auth-cookie'
 
   server.auth.strategy('standard', 'cookie', {
     password: 'secretpasswordnotrevealedtoanyone',
-    cookie: 'donation-cookie',
+    cookie: 'geo-user-cookie',
     isSecure: false,
     ttl: 24 * 60 * 60 * 1000,
     redirectTo: '/login',
