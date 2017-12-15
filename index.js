@@ -6,14 +6,14 @@ const Hapi = require('hapi');
 //creating new hapi server
 let server = new Hapi.Server();
 
-const fs = require('fs');
-let options = {
-  port: 4000,
-  tls: {
-    key: fs.readFileSync('./app/private/ca-webserver.key'),
-    cert: fs.readFileSync('./app/private/ca-webserver.crt')
-  }
-};
+// const fs = require('fs');
+// let options = {
+//   port: 4000,
+//   tls: {
+//     key: fs.readFileSync('./app/private/ca-webserver.key'),
+//     cert: fs.readFileSync('./app/private/ca-webserver.crt')
+//   }
+// };
 
 //setting the server connection to localhost:4000
 //server.connection(options); //uses https
