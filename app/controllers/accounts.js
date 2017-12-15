@@ -83,12 +83,18 @@ exports.userRegister = {
 
   validate: {
     payload: {
-      firstName: Joi.string().required(),
-      lastName: Joi.string().required(),
-      email: Joi.string()
-        .email()
-        .required(),
-      password: Joi.string().required()
+      //Upper case letter followed by a minimum of 1 lower case letters
+      firstName: Joi.string().regex(/^[A-Z][a-z]{1,}$/).required(),
+      //Upper case letter followed by at least 1 lower or upper case letters, allows for McDonald as well as Trump
+      lastName: Joi.string().regex(/^[A-Z][a-zA-Z]{1,}$/).required(),
+      //Must follow the 00/00/0000 or 00/00/00 format
+      dob: Joi.string().regex(/^[0-9]{2}[/][0-9]{2}[/][0-9]{2,4}$/).required(),
+      //already handled by joi
+      email: Joi.string().email().required(),
+
+      //ref: https://stackoverflow.com/questions/5142103/regex-to-validate-password-strength
+      //must have at least 1 upper case character, 1 lower case, 1 integer, 1 special character and a minimum length of 8 characters long
+      password: Joi.string().regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$&*]).{8,}$/).required()
     },
     options: {
       abortEarly: false
