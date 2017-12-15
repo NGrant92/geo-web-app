@@ -9,20 +9,24 @@
           <div class="two fields">
             <div class="field">
               <label>First Name</label>
-              <input placeholder="First Name" type="text" name="firstName" value="Homer">
+              <input placeholder="First Name" type="text" name="firstName" maxlength="15" required>
             </div>
             <div class="field">
               <label>Last Name</label>
-              <input placeholder="Last Name" type="text" name="lastName" value="Simpson">
+              <input placeholder="Last Name" type="text" name="lastName" maxlength="15" required>
             </div>
           </div>
           <div class="field">
+            <label>Date of Birth</label>
+            <input placeholder="Date of Birth" type="text" name="dob" maxlength="15" required>
+          </div>
+          <div class="field">
             <label>Email</label>
-            <input placeholder="Email" type="text" name="email" value="homer@simpson.com">
+            <input placeholder="Email" type="text" name="email" maxlength="20" required>
           </div>
           <div class="field">
             <label>Password</label>
-            <input type="password" name="password" value="secret">
+            <input type="password" name="password" maxlength="15" required>
           </div>
           <button class="ui inverted button" style="background-color: #16551C">Submit</button>
         </form>

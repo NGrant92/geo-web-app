@@ -3,6 +3,9 @@ const User = require("../models/user");
 const Joi = require("joi");
 const Logger = require("../utils/logger");
 
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+
 exports.main = {
   auth: false,
   handler: function(request, reply) {
@@ -37,16 +40,12 @@ exports.authenticate = {
 
   validate: {
     payload: {
-      email: Joi.string()
-        .email()
-        .required(),
+      email: Joi.string().email().required(),
       password: Joi.string().required()
     },
-
     options: {
       abortEarly: false
     },
-
     failAction: function(request, reply, source, error) {
       reply
         .view("login", {
@@ -61,18 +60,20 @@ exports.authenticate = {
     const user = request.payload;
     User.findOne({ email: user.email })
       .then(foundUser => {
-        if (foundUser && foundUser.password === user.password) {
-          request.cookieAuth.set({
-            loggedIn: true,
-            loggedInUser: user.email
-          });
-          reply.redirect("/home");
-        } else {
-          reply.redirect("/signup");
-        }
+        bcrypt.compare(user.password, foundUser.password, function(err, isValid) {
+          if (isValid) {
+            request.cookieAuth.set({
+              loggedIn: true,
+              loggedInUser: user.email
+            });
+            reply.redirect("/home");
+          } else {
+            reply.redirect("/signup");
+          }
+        });
       })
       .catch(err => {
-        reply.redirect("/");
+        reply.redirect("/signup");
       });
   }
 };
@@ -84,16 +85,17 @@ exports.userRegister = {
     payload: {
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
-      email: Joi.string().email().required(),
+      email: Joi.string()
+        .email()
+        .required(),
       password: Joi.string().required()
     },
-
     options: {
       abortEarly: false
     },
-
     failAction: function(request, reply, source, error) {
-      reply.view("signup", {
+      reply
+        .view("signup", {
           title: "Signup error",
           errors: error.data.details
         })
@@ -103,23 +105,29 @@ exports.userRegister = {
 
   handler: function(request, reply) {
     const user = new User(request.payload);
-    const isAdmin = (request.params.admin === "true");
+    const plaintextPassword = user.password;
+    const isAdmin = request.params.admin === "true";
 
-    user.img = "http://res.cloudinary.com/ngrant/image/upload/v1509624963/Profile_iet7qx.png";
+    user.img =
+      "http://res.cloudinary.com/ngrant/image/upload/v1513088924/white-pin-green-back_iy4fax.png";
     user.admin = false;
-    user.save()
-      .then(newUser => {
-        if(isAdmin){
-          reply.redirect("/home");
-        }
-        else{
-          reply.redirect("/login")
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        reply.redirect("/");
-      });
+
+    bcrypt.hash(plaintextPassword, saltRounds, function(err, hash) {
+      user.password = hash;
+      return user
+        .save()
+        .then(newUser => {
+          if (isAdmin) {
+            reply.redirect("/home");
+          } else {
+            reply.redirect("/login");
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          reply.redirect("/");
+        });
+    });
   }
 };
 

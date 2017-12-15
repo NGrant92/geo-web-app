@@ -4,32 +4,36 @@
     "homer": {
       "firstName": "Homer",
       "lastName": "Simpson",
+      "dob": "01/01/1981",
       "email": "homer@simpson.com",
-      "password": "secret",
+      "password": "$2a$10$HXYX9VoEjRpKN0yKmIRgx.zShuuIScYcAUk7s6ASD0QfMECt.fHLi",
       "img": "http://res.cloudinary.com/ngrant/image/upload/v1506255274/LhFydmk_ueraaq.png",
       "admin": false
     },
     "marge": {
       "firstName": "Marge",
       "lastName": "Simpson",
+      "dob": "01/01/1982",
       "email": "marge@simpson.com",
-      "password": "secret",
+      "password": "$2a$10$wvQYkTp86iYJNa0CSZmqsuELfy67uPxG7iZjHzVAz/0XZKBhJ06Ve",
       "img": "http://res.cloudinary.com/ngrant/image/upload/v1509621811/marge_efpuft.jpg",
       "admin": false
     },
     "bart": {
       "firstName": "Bart",
       "lastName": "Simpson",
+      "dob": "01/01/1993",
       "email": "bart@simpson.com",
-      "password": "secret",
+      "password": "$2a$10$V/XYpVJjOgxU7XLftibTrewAHZ2sD99ZvdrGkNNHt64K25Pa3qbzu",
       "img": "http://res.cloudinary.com/ngrant/image/upload/v1503767824/gteyxykqycd8zu2jwtiy.png",
       "admin": false
     },
     "ned": {
       "firstName": "Ned",
       "lastName": "Flanders",
+      "dob": "01/01/1981",
       "email": "admin@simpson.com",
-      "password": "secret",
+      "password": "$2a$10$0T/nFUax6hdVZsVmQzRNiOeCMmv6hL7zquxdlmvNuu9v63zwJjkue",
       "img": "https://res.cloudinary.com/ngrant/image/upload/v1509798959/ned.jpg",
       "admin": true
     }

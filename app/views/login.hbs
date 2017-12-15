@@ -6,13 +6,13 @@
       <img src="https://res.cloudinary.com/ngrant/image/upload/v1510223375/location_pdzwdp.png" class="ui image">
     </aside>
     <div class="ui ten wide column fluid form">
-      <form action="/login" method="POST">
+      <form class="ui seven wide" action="/login" method="POST">
         <h3 class="ui header">Log-in</h3>
         <div class="field">
-          <label>Email</label> <input placeholder="Email" type="text" name="email" value="homer@simpson.com">
+          <label>Email</label> <input placeholder="Email" type="text" name="email" maxlength="20" required>
         </div>
         <div class="field">
-          <label>Password</label> <input type="password" name="password" value="secret">
+          <label>Password</label> <input type="password" name="password" maxlength="15" required>
         </div>
         <button class="ui inverted button" style="background-color: #16551C">Login</button>
       </form>
