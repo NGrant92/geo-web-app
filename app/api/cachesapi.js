@@ -4,7 +4,7 @@ const Cache = require("../models/cache");
 const Boom = require("boom");
 
 exports.find = {
-  auth: false,
+  auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
     Cache.find({})
@@ -19,7 +19,7 @@ exports.find = {
 };
 
 exports.findOne = {
-  auth: false,
+  auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
     Cache.findOne({ _id: request.params.id })
@@ -33,7 +33,7 @@ exports.findOne = {
 };
 
 exports.createCache = {
-  auth: false,
+  auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
     const cache = new Cache(request.payload);
@@ -53,7 +53,7 @@ exports.createCache = {
 };
 
 exports.deleteAll = {
-  auth: false,
+  auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
     Cache.remove({})
@@ -67,7 +67,7 @@ exports.deleteAll = {
 };
 
 exports.deleteOne = {
-  auth: false,
+  auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
     Cache.remove({ _id: request.params.id })

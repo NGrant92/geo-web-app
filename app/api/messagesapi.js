@@ -4,7 +4,7 @@ const Message = require("../models/message");
 const Boom = require("boom");
 
 exports.find = {
-  auth: false,
+  auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
     Message.find({})
@@ -19,7 +19,7 @@ exports.find = {
 };
 
 exports.findOne = {
-  auth: false,
+  auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
     Message.findOne({ _id: request.params.id })
@@ -33,7 +33,7 @@ exports.findOne = {
 };
 
 exports.create = {
-  auth: false,
+  auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
     const message = new Message(request.payload);
@@ -49,7 +49,7 @@ exports.create = {
 };
 
 exports.deleteAll = {
-  auth: false,
+  auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
     Message.remove({})
@@ -63,7 +63,7 @@ exports.deleteAll = {
 };
 
 exports.deleteOne = {
-  auth: false,
+  auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
     Message.remove({ _id: request.params.id })
