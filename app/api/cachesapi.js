@@ -32,7 +32,7 @@ exports.findOne = {
   }
 };
 
-exports.create = {
+exports.createCache = {
   auth: false,
 
   handler: function(request, reply) {
@@ -40,7 +40,11 @@ exports.create = {
     cache
       .save()
       .then(newCache => {
-        reply(newCache).code(201);
+        Cache.findOne(newCache)
+          .populate("user")
+          .then(cache => {
+            reply(cache).code(201);
+          });
       })
       .catch(err => {
         reply(Boom.badImplementation("error creating cache"));

@@ -41,7 +41,7 @@ module.exports = [
   {
     method: "POST",
     path: "/api/caches",
-    config: CachesApi.create
+    config: CachesApi.createCache
   },
   {
     method: "DELETE",
