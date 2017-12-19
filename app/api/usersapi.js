@@ -3,26 +3,26 @@
 const User = require("../models/user");
 const Boom = require("boom");
 const bcrypt = require("bcrypt");
+const utils = require("./utils.js");
 const saltRounds = 10;
 
 exports.authenticate = {
   auth: false,
   handler: function(request, reply) {
     const user = request.payload;
+    let loggedUser = null;
+
     User.findOne({ email: user.email })
       .then(foundUser => {
-        bcrypt.compare(user.password, foundUser.password).then(isValid => {
-          if (isValid) {
-            const token = utils.createToken(foundUser);
-            reply({ success: true, token: token }).code(201);
-          }
-          else {
-            reply({
-              success: false,
-              message: "Authentication failed. User not found."
-            }).code(201);
-          }
-        });
+        if (bcrypt.compare(user.password, foundUser.password)) {
+          const token = utils.createToken(foundUser);
+          reply({ success: true, token: token }).code(201);
+        } else {
+          reply({
+            success: false,
+            message: "Authentication failed. User not found."
+          }).code(201);
+        }
       })
       .catch(err => {
         reply(Boom.notFound("internal db failure"));
@@ -31,7 +31,7 @@ exports.authenticate = {
 };
 
 exports.find = {
-  auth: { strategy: 'jwt'},
+  auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
     User.find({})
@@ -46,7 +46,7 @@ exports.find = {
 };
 
 exports.findOne = {
-  auth: { strategy: 'jwt'},
+  auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
     User.findOne({ _id: request.params.id })
@@ -60,7 +60,7 @@ exports.findOne = {
 };
 
 exports.create = {
-  auth: { strategy: 'jwt'},
+  auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
     const user = new User(request.payload);
@@ -76,7 +76,7 @@ exports.create = {
 };
 
 exports.deleteAll = {
-  auth: { strategy: 'jwt'},
+  auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
     User.remove({})
@@ -90,7 +90,7 @@ exports.deleteAll = {
 };
 
 exports.deleteOne = {
-  auth: { strategy: 'jwt'},
+  auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
     User.remove({ _id: request.params.id })
