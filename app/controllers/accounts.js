@@ -60,7 +60,7 @@ exports.authenticate = {
     const user = request.payload;
     User.findOne({ email: user.email })
       .then(foundUser => {
-        bcrypt.compare(user.password, foundUser.password, function(err, isValid) {
+        bcrypt.compare(user.password, foundUser.password).then(isValid =>  {
           if (isValid) {
             request.cookieAuth.set({
               loggedIn: true,

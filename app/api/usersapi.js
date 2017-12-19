@@ -2,6 +2,33 @@
 
 const User = require("../models/user");
 const Boom = require("boom");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+
+exports.authenticate = {
+  auth: false,
+  handler: function(request, reply) {
+    const user = request.payload;
+    User.findOne({ email: user.email })
+      .then(foundUser => {
+        bcrypt.compare(user.password, foundUser.password).then(isValid => {
+          if (isValid) {
+            const token = utils.createToken(foundUser);
+            reply({ success: true, token: token }).code(201);
+          }
+          else {
+            reply({
+              success: false,
+              message: "Authentication failed. User not found."
+            }).code(201);
+          }
+        });
+      })
+      .catch(err => {
+        reply(Boom.notFound("internal db failure"));
+      });
+  }
+};
 
 exports.find = {
   auth: false,

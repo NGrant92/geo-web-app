@@ -4,6 +4,11 @@ const MessagesApi = require("./app/api/messagesapi");
 
 module.exports = [
   {
+    method: "POST",
+    path: "/api/users/authenticate",
+    config: UsersApi.authenticate
+  },
+  {
     method: "GET",
     path: "/api/users",
     config: UsersApi.find
