@@ -4,7 +4,7 @@ const Message = require("../models/message");
 const Boom = require("boom");
 
 exports.find = {
-  auth: { strategy: 'jwt'},
+  auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
     Message.find({})
@@ -19,7 +19,7 @@ exports.find = {
 };
 
 exports.findOne = {
-  auth: { strategy: 'jwt'},
+  auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
     Message.findOne({ _id: request.params.id })
@@ -33,7 +33,7 @@ exports.findOne = {
 };
 
 exports.create = {
-  auth: { strategy: 'jwt'},
+  auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
     const message = new Message(request.payload);
@@ -41,7 +41,11 @@ exports.create = {
     message
       .save()
       .then(newMessage => {
-        reply(newMessage).code(201);
+        Message.findOne(newMessage)
+          .populate("user")
+          .then(message => {
+            reply(message).code(201);
+          });
       })
       .catch(err => {
         reply(Boom.badImplementation("error creating message"));
@@ -50,7 +54,7 @@ exports.create = {
 };
 
 exports.deleteAll = {
-  auth: { strategy: 'jwt'},
+  auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
     Message.remove({})
@@ -64,7 +68,7 @@ exports.deleteAll = {
 };
 
 exports.deleteOne = {
-  auth: { strategy: 'jwt'},
+  auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
     Message.remove({ _id: request.params.id })
