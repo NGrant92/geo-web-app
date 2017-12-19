@@ -17,6 +17,7 @@
     "handlebars": "^4.0.11",
     "hapi": "^16.6.2",
     "hapi-auth-cookie": "^7.0.0",
+    "hapi-cors-headers": "^1.0.3",
     "inert": "^4.2.1",
     "joi": "^11.4.0",
     "jquery": "^3.2.1",

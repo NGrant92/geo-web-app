@@ -2,7 +2,7 @@
 
 //making hapi accessable in this file
 const Hapi = require('hapi');
-
+const corsHeaders = require('hapi-cors-headers');
 //creating new hapi server
 let server = new Hapi.Server();
 
@@ -51,6 +51,7 @@ server.register([require('inert'), require('vision'), require('hapi-auth-cookie'
     strategy: 'standard',
   });
 
+  server.ext('onPreResponse', corsHeaders);
   //setting server route to routes.js
   server.route(require('./routes'));
   server.route(require('./routesapi'));
