@@ -37,6 +37,7 @@ exports.createCache = {
 
   handler: function(request, reply) {
     const cache = new Cache(request.payload);
+    cache.user = utils.getUserId(request);
     cache
       .save()
       .then(newCache => {

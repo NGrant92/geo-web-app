@@ -31,3 +31,19 @@ exports.validate = function (decoded, request, callback) {
     callback(null, false);
   });
 };
+
+exports.getUserId = function(request){
+  let userId = null;
+
+  try{
+    const auth = request.headers.authorization;
+    let token = auth.split(' ')[1];
+    let decodedToken = jwt.verify(token, 'secretpasswordnotrevealedtoanyone');
+    userId = decodedToken.id;
+  }
+  catch(e){
+    userId = null;
+  }
+
+  return userId;
+};

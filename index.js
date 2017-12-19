@@ -40,13 +40,13 @@ server.register([require('inert'), require('vision'), require('hapi-auth-cookie'
     isCached: false,
   });
 
-  // server.auth.strategy('standard', 'cookie', {
-  //   password: 'secretpasswordnotrevealedtoanyone',
-  //   cookie: 'geo-user-cookie',
-  //   isSecure: false,
-  //   ttl: 24 * 60 * 60 * 1000,
-  //   redirectTo: '/login',
-  // });
+  server.auth.strategy('standard', 'cookie', {
+    password: 'secretpasswordnotrevealedtoanyone',
+    cookie: 'geo-user-cookie',
+    isSecure: false,
+    ttl: 24 * 60 * 60 * 1000,
+    redirectTo: '/login',
+  });
 
   server.auth.strategy('jwt', 'jwt', {
     key: 'secretpasswordnotrevealedtoanyone',

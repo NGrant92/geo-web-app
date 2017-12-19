@@ -37,6 +37,7 @@ exports.create = {
 
   handler: function(request, reply) {
     const message = new Message(request.payload);
+    message.user = utils.getUserId(request);
     message
       .save()
       .then(newMessage => {
