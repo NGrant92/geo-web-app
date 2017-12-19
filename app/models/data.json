@@ -5,7 +5,7 @@
       "firstName": "Homer",
       "lastName": "Simpson",
       "email": "homer@simpson.com",
-      "password": "secret",
+      "password": "$2a$10$HXYX9VoEjRpKN0yKmIRgx.zShuuIScYcAUk7s6ASD0QfMECt.fHLi",
       "img": "http://res.cloudinary.com/ngrant/image/upload/v1506255274/LhFydmk_ueraaq.png",
       "admin": false
     },
