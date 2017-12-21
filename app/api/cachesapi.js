@@ -2,6 +2,7 @@
 
 const Cache = require("../models/cache");
 const Boom = require("boom");
+const utils = require("./utils.js");
 
 exports.find = {
   auth: { strategy: 'jwt'},
