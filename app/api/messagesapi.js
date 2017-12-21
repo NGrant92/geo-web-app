@@ -2,6 +2,7 @@
 
 const Message = require("../models/message");
 const Boom = require("boom");
+const utils = require("./utils.js");
 
 exports.find = {
   auth: { strategy: "jwt" },
