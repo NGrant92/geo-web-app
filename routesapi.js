@@ -15,6 +15,11 @@ module.exports = [
   },
   {
     method: "GET",
+    path: "/api/users/current",
+    config: UsersApi.findCurrentUser
+  },
+  {
+    method: "GET",
     path: "/api/users/{id}",
     config: UsersApi.findOne
   },

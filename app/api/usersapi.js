@@ -30,6 +30,22 @@ exports.authenticate = {
   }
 };
 
+exports.findCurrentUser = {
+  auth: { strategy: "jwt" },
+
+  handler: function(request, reply) {
+    const userId = utils.getUserId(request);
+
+    User.findOne({ _id: userId })
+      .then(user => {
+        reply(user);
+      })
+      .catch(err => {
+        reply(Boom.badImplementation("error creating user"));
+      });
+  }
+};
+
 exports.find = {
   auth: { strategy: "jwt" },
 
