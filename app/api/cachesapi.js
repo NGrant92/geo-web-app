@@ -8,10 +8,10 @@ exports.find = {
   auth: { strategy: 'jwt'},
 
   handler: function(request, reply) {
-    Cache.find({})
+    Cache.find({}).populate("user")
       .exec()
       .then(caches => {
-        reply(caches);
+        reply(caches.reverse());
       })
       .catch(err => {
         reply(Boom.badImplementation("error accessing db"));
