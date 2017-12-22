@@ -8,10 +8,10 @@ exports.find = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    Message.find({})
+    Message.find({}).populate("user")
       .exec()
       .then(messages => {
-        reply(messages);
+        reply(messages.reverse());
       })
       .catch(err => {
         reply(Boom.badImplementation("error accessing db"));
@@ -23,7 +23,7 @@ exports.findOne = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    Message.findOne({ _id: request.params.id })
+    Message.findOne({ _id: request.params.id }).populate("user")
       .then(message => {
         reply(message);
       })
