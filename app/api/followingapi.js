@@ -9,7 +9,9 @@ exports.findFollowers = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    Following.find({}).populate("user")
+    Following.find({ followee: request.params.id })
+      .populate("follower")
+      .populate("followee")
       .exec()
       .then(followings => {
         reply(followings.reverse());
@@ -24,7 +26,9 @@ exports.findFollowees = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    Following.find({followee: request.params.id}).populate("user")
+    Following.find({ follower: request.params.id })
+      .populate("follower")
+      .populate("followee")
       .exec()
       .then(followings => {
         reply(followings.reverse());
