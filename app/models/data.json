@@ -117,12 +117,12 @@
       "followee": "->users.marge"
     },
     "three": {
-      "message": "Woohoo! found a cache with maggie in the park!",
-      "user": "->users.homer"
+      "follower": "->users.marge",
+      "followee": "->users.homer"
     },
     "four": {
-      "message": "Bart showed me his one by the skatepark, neat!",
-      "user": "->users.homer"
+      "follower": "->users.bart",
+      "followee": "->users.homer"
     }
   }
 }

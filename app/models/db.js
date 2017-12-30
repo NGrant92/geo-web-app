@@ -20,6 +20,7 @@ mongoose.connection.on('connected', function () {
     const Message = require('./message');
     const Cache = require('./cache');
     const User = require('./user');
+    const Following = require('./following');
 
     seeder.seed(data, { dropDatabase: false, dropCollections: true }).then(dbData => {
       console.log('preloading Test Data');
