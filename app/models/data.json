@@ -42,6 +42,7 @@
       "latitude": 52.2462,
       "longitude": 7.1202,
       "description": "under the busted half pipe",
+      "visitors": 3,
       "user": "->users.bart"
     },
     "two": {
@@ -50,6 +51,7 @@
       "latitude": 52.2462,
       "longitude": 2.1202,
       "description": "Under the baby's slide. Just don't keep your kid waiting at the top as you look for it",
+      "visitors": 2,
       "user": "->users.marge"
     },
     "three": {
@@ -58,6 +60,7 @@
       "latitude": 52.2462,
       "longitude": 0.1202,
       "description": "Under Barney",
+      "visitors": 1,
       "user": "->users.homer"
     },
     "four": {
@@ -66,6 +69,7 @@
       "latitude": 52.2462,
       "longitude": 10.1202,
       "description": "First base!",
+      "visitors": 4,
       "user": "->users.homer"
     },
     "five": {
@@ -74,6 +78,7 @@
       "latitude": 52.2462,
       "longitude": 15.1202,
       "description": "Under his foot",
+      "visitors": 2,
       "user": "->users.homer"
     }
   },

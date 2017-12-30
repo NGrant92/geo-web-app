@@ -8,6 +8,7 @@ const cacheSchema = mongoose.Schema({
   latitude: Number,
   longitude: Number,
   description: String,
+  visitors: Number,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
