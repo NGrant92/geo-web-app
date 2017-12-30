@@ -104,5 +104,25 @@
       "message": "Thought I found a brand new cache on Jebediah's statue. Forgot it was mine... D'OH >.<",
       "user": "->users.homer"
     }
+  },
+
+  "following": {
+    "_model": "Following",
+    "one": {
+      "follower": "->users.marge",
+      "followee": "->users.bart"
+    },
+    "two": {
+      "follower": "->users.homer",
+      "followee": "->users.marge"
+    },
+    "three": {
+      "message": "Woohoo! found a cache with maggie in the park!",
+      "user": "->users.homer"
+    },
+    "four": {
+      "message": "Bart showed me his one by the skatepark, neat!",
+      "user": "->users.homer"
+    }
   }
 }
