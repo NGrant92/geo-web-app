@@ -1,6 +1,7 @@
 const UsersApi = require("./app/api/usersapi");
 const CachesApi = require("./app/api/cachesapi");
 const MessagesApi = require("./app/api/messagesapi");
+const FollowingApi = require("./app/api/followingapi");
 
 module.exports = [
   {
@@ -87,5 +88,10 @@ module.exports = [
     method: "DELETE",
     path: "/api/messages",
     config: MessagesApi.deleteAll
-  }
+  },
+  {
+    method: "GET",
+    path: "/api/followers/{id}",
+    config: FolllowingApi.findFollowers
+  },
 ];
