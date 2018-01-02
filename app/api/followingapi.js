@@ -13,8 +13,8 @@ exports.findFollowers = {
       .populate("follower")
       .populate("followee")
       .exec()
-      .then(followings => {
-        reply(followings.reverse());
+      .then(followers => {
+        reply(followers);
       })
       .catch(err => {
         reply(Boom.badImplementation("error accessing db"));
