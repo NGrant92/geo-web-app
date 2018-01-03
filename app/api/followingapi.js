@@ -50,13 +50,15 @@ exports.create = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    const newFollowing = new Following(request.payload);
-    newFollowing
+    const following = new Following(request.payload);
+    following
       .save()
       .then(newFollowing => {
-        const follower = userapi.findOne(newFollowing.follower);
-        reply(follower).code(201);
-        Logger.info(following);
+        Following.findOne(newFollowing)
+          .populate("follower")
+          .then(following => {
+            reply(following.follower);
+          });
       })
       .catch(err => {
         reply(Boom.badImplementation("error creating following"));
@@ -71,6 +73,20 @@ exports.unfollow = {
     Following.remove({ _id: request.params.id })
       .then(following => {
         reply(following).code(204);
+      })
+      .catch(err => {
+        reply(Boom.notFound("id not found"));
+      });
+  }
+};
+
+exports.findOne = {
+  auth: { strategy: "jwt" },
+
+  handler: function(request, reply) {
+    Following.findOne({ _id: request.params.id })
+      .then(following => {
+        reply(following);
       })
       .catch(err => {
         reply(Boom.notFound("id not found"));
