@@ -4,7 +4,7 @@ const Following = require("../models/following");
 const Boom = require("boom");
 const utils = require("./utils.js");
 const userapi = require("./usersapi");
-const _ = require('lodash');
+const Logger = require("../utils/logger");
 
 exports.findFollowers = {
   auth: { strategy: "jwt" },
@@ -50,18 +50,13 @@ exports.create = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    const following = new Following(request.payload);
-    following.follower = utils.getUserId(request);
-    following.followee = userapi.findOne(request.params.followee);
-    following
+    const newFollowing = new Following(request.payload);
+    newFollowing
       .save()
       .then(newFollowing => {
-        Following.findOne(newFollowing)
-          .populate("follower")
-          .populate("followee")
-          .then(following => {
-            reply(following).code(201);
-          });
+        const follower = userapi.findOne(newFollowing.follower);
+        reply(follower).code(201);
+        Logger.info(following);
       })
       .catch(err => {
         reply(Boom.badImplementation("error creating following"));

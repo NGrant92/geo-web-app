@@ -91,7 +91,12 @@ module.exports = [
   },
   {
     method: "GET",
-    path: "/api/followers/{id}",
+    path: "/api/following/{id}",
     config: FollowingApi.findFollowers
+  },
+  {
+    method: "POST",
+    path: "/api/following",
+    config: FollowingApi.create
   },
 ];
