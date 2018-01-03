@@ -104,4 +104,9 @@ module.exports = [
     path: "/api/following",
     config: FollowingApi.create
   },
+  {
+    method: "DELETE",
+    path: "/api/following/{id}",
+    config: FollowingApi.unfollow
+  },
 ];

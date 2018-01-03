@@ -56,8 +56,9 @@ exports.create = {
       .then(newFollowing => {
         Following.findOne(newFollowing)
           .populate("follower")
+          .populate("followee")
           .then(following => {
-            reply(following.follower);
+            reply(following);
           });
       })
       .catch(err => {
