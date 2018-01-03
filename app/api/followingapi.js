@@ -14,10 +14,10 @@ exports.findFollowers = {
       .populate("follower")
       .exec()
       .then(followings => {
+        //https://stackoverflow.com/a/46694321
         let followerList = followings.map(following => {
           return following.follower;
         });
-
         reply(followerList);
       })
       .catch(err => {
@@ -34,6 +34,7 @@ exports.findFollowees = {
       .populate("followee")
       .exec()
       .then(followings => {
+        //https://stackoverflow.com/a/46694321
         let followeeList = followings.map(following => {
           return following.followee;
         });
