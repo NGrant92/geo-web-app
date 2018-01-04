@@ -42,7 +42,7 @@ module.exports = [
   {
     method: "GET",
     path: "/api/caches",
-    config: CachesApi.find
+    config: CachesApi.findAll
   },
   {
     method: "GET",

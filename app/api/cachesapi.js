@@ -2,11 +2,12 @@
 
 const Cache = require("../models/cache");
 const Following = require("../models/following");
+const followingapi = require("./followingapi");
 const Boom = require("boom");
 const utils = require("./utils.js");
 const Logger = require("../utils/logger");
 
-exports.find = {
+exports.findAll = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
@@ -14,6 +15,8 @@ exports.find = {
       .populate("user")
       .exec()
       .then(caches => {
+        Logger.info("ALL CACHES: ");
+        Logger.info("" + caches);
         reply(caches.reverse());
       })
       .catch(err => {
@@ -89,24 +92,20 @@ exports.findFolloweeCaches = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    let followeeCaches = [];
-    Following.findFollowees({ follower: utils.getUserId(request) })
-      .then(followees => {
-        followees.forEach(followee => {
-          Cache.find({ user: followee })
-            .populate("user")
-            .then(caches => {
-              Logger.info("FOR EACH CACHES ARRAY");
-              Logger.info(caches);
-              //https://stackoverflow.com/a/32511679
-              followeeCaches.push(...caches);
-            });
+
+    Following.find({ follower: utils.getUserId(request) })
+      .then(followingList => {
+        return followingList.map(res => {
+          return res.followee;
         });
       })
-      .then(res => {
-        Logger.info("FOLLOWEE CACHES:");
-        Logger.info(followeeCaches);
-        reply(followeeCaches).code(201);
+      .then(followingList => {
+        return Cache.find({ user: {$in: followingList} })
+          .populate("user")
+          .exec();
+      })
+      .then(followingCaches => {
+        reply(followingCaches).code(201);
       })
       .catch(err => {
         reply(Boom.notFound("id not found"));
