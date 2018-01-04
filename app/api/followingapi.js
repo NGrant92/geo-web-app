@@ -1,6 +1,7 @@
 "use strict";
 
 const Following = require("../models/following");
+const Cache = require("../models/cache");
 const Boom = require("boom");
 const utils = require("./utils.js");
 const userapi = require("./usersapi");
@@ -73,7 +74,10 @@ exports.unfollow = {
 
   handler: function(request, reply) {
     //searching for a following with a specific follower id and followee id
-    Following.remove({follower: utils.getUserId(request), followee: request.params.id})
+    Following.remove({
+      follower: utils.getUserId(request),
+      followee: request.params.id
+    })
       .then(following => {
         reply().code(204);
       })

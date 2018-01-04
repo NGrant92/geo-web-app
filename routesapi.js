@@ -50,6 +50,11 @@ module.exports = [
     config: CachesApi.findOne
   },
   {
+    method: "GET",
+    path: "/api/caches/following",
+    config: CachesApi.findFolloweeCaches
+  },
+  {
     method: "POST",
     path: "/api/caches",
     config: CachesApi.createCache
