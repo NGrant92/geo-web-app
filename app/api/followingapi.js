@@ -38,6 +38,7 @@ exports.findFollowees = {
         let followeeList = followings.map(following => {
           return following.followee;
         });
+        //returns an array list people the user is following
         reply(followeeList);
       })
       .catch(err => {
@@ -71,12 +72,14 @@ exports.unfollow = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    Following.remove({ _id: request.params.id })
+    //searching for a following with a specific follower id and followee id
+    Following.remove({follower: utils.getUserId(request), followee: request.params.id})
       .then(following => {
-        reply(following).code(204);
+        reply().code(204);
       })
       .catch(err => {
         reply(Boom.notFound("id not found"));
+        Logger.info(err);
       });
   }
 };
