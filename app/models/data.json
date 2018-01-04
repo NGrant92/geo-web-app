@@ -86,6 +86,7 @@
     "_model": "Message",
     "one": {
       "message": "Sweet! found one under the jebediah statue!",
+      "img": "http://res.cloudinary.com/ngrant/image/upload/v1515085417/homers-night-out5_o8r8oa.png",
       "user": "->users.bart"
     },
     "two": {

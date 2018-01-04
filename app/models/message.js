@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const messageSchema = mongoose.Schema({
   message: String,
+  img: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
