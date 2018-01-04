@@ -80,6 +80,11 @@ module.exports = [
     config: MessagesApi.findOne
   },
   {
+    method: "GET",
+    path: "/api/messages/following",
+    config: MessagesApi.findFolloweeMessages
+  },
+  {
     method: "POST",
     path: "/api/messages",
     config: MessagesApi.create

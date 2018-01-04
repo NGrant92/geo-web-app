@@ -2,7 +2,6 @@
 
 const Cache = require("../models/cache");
 const Following = require("../models/following");
-const followingapi = require("./followingapi");
 const Boom = require("boom");
 const utils = require("./utils.js");
 const Logger = require("../utils/logger");

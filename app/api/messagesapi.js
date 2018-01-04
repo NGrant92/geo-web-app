@@ -1,6 +1,7 @@
 "use strict";
 
 const Message = require("../models/message");
+const Following = require("../models/following");
 const Boom = require("boom");
 const utils = require("./utils.js");
 
@@ -8,7 +9,8 @@ exports.find = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    Message.find({}).populate("user")
+    Message.find({})
+      .populate("user")
       .exec()
       .then(messages => {
         reply(messages.reverse());
@@ -23,7 +25,8 @@ exports.findOne = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    Message.findOne({ _id: request.params.id }).populate("user")
+    Message.findOne({ _id: request.params.id })
+      .populate("user")
       .then(message => {
         reply(message);
       })
@@ -78,6 +81,31 @@ exports.deleteOne = {
       })
       .catch(err => {
         reply(Boom.notFound("id not found"));
+      });
+  }
+};
+
+exports.findFolloweeMessages = {
+  auth: { strategy: "jwt" },
+
+  handler: function(request, reply) {
+    Following.find({ follower: utils.getUserId(request) })
+      .then(followingList => {
+        return followingList.map(res => {
+          return res.followee;
+        });
+      })
+      .then(followingList => {
+        return Message.find({ user: { $in: followingList } })
+          .populate("user")
+          .exec();
+      })
+      .then(followingMessages => {
+        reply(followingMessages).code(201);
+      })
+      .catch(err => {
+        reply(Boom.notFound("id not found"));
+        Logger.info(err);
       });
   }
 };
