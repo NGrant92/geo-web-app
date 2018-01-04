@@ -2,6 +2,7 @@
 
 const Message = require("../models/message");
 const Following = require("../models/following");
+const cloudinary = require('cloudinary');
 const Boom = require("boom");
 const utils = require("./utils.js");
 
