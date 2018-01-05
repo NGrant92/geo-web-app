@@ -108,7 +108,6 @@ exports.findFolloweeCaches = {
       })
       .catch(err => {
         reply(Boom.notFound("id not found"));
-        Logger.info(err);
       });
   }
 };

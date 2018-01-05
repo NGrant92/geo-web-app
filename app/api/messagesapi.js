@@ -2,9 +2,13 @@
 
 const Message = require("../models/message");
 const Following = require("../models/following");
-const cloudinary = require('cloudinary');
 const Boom = require("boom");
 const utils = require("./utils.js");
+const Logger = require("../utils/logger");
+
+const cloudinary = require("cloudinary");
+const env = require("../../env.json");
+cloudinary.config(env.cloudinary);
 
 exports.find = {
   auth: { strategy: "jwt" },
@@ -41,10 +45,17 @@ exports.create = {
   auth: { strategy: "jwt" },
 
   handler: function(request, reply) {
-    const message = new Message(request.payload);
+    let message = new Message(request.payload);
     message.user = utils.getUserId(request);
-    message
-      .save()
+    const image = request.payload.img;
+
+    if (image != null) {
+      cloudinary.uploader.upload(image).then(res => {
+        message.img = res.url;
+      });
+    }
+
+    message.save()
       .then(newMessage => {
         Message.findOne(newMessage)
           .populate("user")
