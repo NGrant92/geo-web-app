@@ -80,14 +80,18 @@ exports.create = {
 
   handler: function(request, reply) {
     const user = new User(request.payload);
-    user
-      .save()
-      .then(newUser => {
-        reply(newUser).code(201);
-      })
-      .catch(err => {
-        reply(Boom.badImplementation("error creating user"));
-      });
+    const plaintextPassword = user.password;
+    bcrypt.hash(plaintextPassword, saltRounds, function(err, hash) {
+      user.password = hash;
+      return user
+        .save()
+        .then(newUser => {
+          reply(newUser).code(201);
+        })
+        .catch(err => {
+          reply(Boom.badImplementation("error creating user"));
+        });
+    });
   }
 };
 
