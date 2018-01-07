@@ -60,6 +60,22 @@ Features:
     Email: admin@simpson.com
     Password: secret
     Note: Admin account only accessible from web app side and not from API
+    
+#### Cloudinary Setup:
+
+- Create a [Cloudinary](https://cloudinary.com/) account.
+- Add an "env.json" file in same location as README
+- Get cloudinary username, api_key and api_secret from profile
+
+Add the above info to env.json like so:
+
+    {
+      "cloudinary": {
+        "cloud_name": "username_here",
+        "api_key": "api_key_here",
+        "api_secret": "api_secret_here"
+      }
+    }
 
 
 #### Software Used:
