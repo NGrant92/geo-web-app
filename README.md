@@ -7,7 +7,9 @@
 
 **Github repo:** https://github.com/NGrant92/geo-web-app
 
-**Heroku Link:** https://afternoon-peak-51691.herokuapp.com/
+**Web App (Heroku):** https://afternoon-peak-51691.herokuapp.com/
+
+**Aurelia Client (Github Pages):** https://ngrant92.github.io/geo-web-app-au-ts/
 
 #### Description:
 
