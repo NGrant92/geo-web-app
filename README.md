@@ -18,13 +18,28 @@ it and usually leave notes for the next visitors.
 
 #### API
 
-Api routes and functions have been integrated, allowing for other applications 
-connect to perform CRUD on the mongo database store on mlab. This allows for other client side
-applications to access the database.
+Features:
 
-Every API function (aside from 2 functions) require a Json Web Token(JWT) in order to use the function.
-The JWT is an encrypted cookie that stores the Logged User ID and Email to ensure the user recieves the
-correct information and is pretected from certain security risks.
+    * Login/Signup:
+        * A user can login/signup through the API
+        * Passwords are encrypted for security purposes
+    
+    * Post Message:
+        * A user can post a message that is viewable to all
+        * Message Post can contain images
+
+    * Add Caches:
+        * A user can post a cache that is viewable to all
+        * Caches store GPS information
+    
+    * Followers:
+        * A user can follow/unfollow another user
+        * User has a timeline of Messages Posts and Caches that shows posts/caches from people they're following
+    
+    *JWT:
+        * JSON Web Tokens are required by most of the API functions
+        * Encrypted Cookies that store User ID and Email
+        * Protects against certain security threats such as Meet in the Middle attacks
 
 
 #### Preloaded Accounts:
