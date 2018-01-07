@@ -55,3 +55,4 @@ correct information and is pretected from certain security risks.
 - [BCrypt](https://www.npmjs.com/package/bcrypt)
 - [Cloudinary](https://cloudinary.com/)
 - [MLab](https://mlab.com/)
+- [Semantic UI](https://semantic-ui.com/)
